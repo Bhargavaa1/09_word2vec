@@ -1,9 +1,9 @@
-# Pagerank Project
+# Word2Vec Project
 
 In this project, you will create a simple search engine for the website <https://www.lawfareblog.com>.
 This website provides legal analysis on US national security issues.
 
-**Due date:** Sunday, 18 September at midnight
+**Due date:** Sunday, 11 December at midnight
 
 ## Background
 

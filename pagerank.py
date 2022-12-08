@@ -11,7 +11,8 @@ import gzip
 import csv
 
 import logging
-
+import gensim.downloader
+vectors = gensim.downloader.load('word2vec-google-news-300')
 
 class WebGraph():
 
@@ -213,13 +214,18 @@ def url_satisfies_query(url, query):
     '''
     satisfies = False
     terms = query.split()
-
     num_terms = 0
     for term in terms:
+        words = []
         if term[0] != '-':
             num_terms += 1
-            if term in url:
-                satisfies = True
+            listOfWordTuple = vectors.most_similar(term)
+            listOfWordTuple = listOfWordTuple[0:5]
+            for element in listOfWordTuple:
+                words.append(element[0])
+            for word in words:
+                if word in url:
+                    satisfies = True
     if num_terms == 0:
         satisfies = True
 

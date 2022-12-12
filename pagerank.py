@@ -12,7 +12,7 @@ import csv
 
 import logging
 import gensim.downloader
-vectors = gensim.downloader.load('glove-wiki-gigaword-300')
+vectors = gensim.downloader.load('conceptnet-numberbatch-17-06-300')
 
 
 class WebGraph():
@@ -127,7 +127,7 @@ class WebGraph():
         with torch.no_grad():
             n = self.P.shape[0]
 
-            # Calculate a
+            # Calculate alpha
             nondangling_nodes = torch.sparse.sum(self.P,1).indices()
             a = torch.ones([n,1])
             a[nondangling_nodes] = 0
@@ -164,8 +164,7 @@ class WebGraph():
                 # early stop when sufficient accuracy reached
                 if residual < epsilon:
                     break
-
-            #x = x0.squeeze()
+                
             return x.squeeze()
 
 

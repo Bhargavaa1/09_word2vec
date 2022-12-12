@@ -514,16 +514,16 @@ but a simple keyword search for corona or related terms would not find these art
 
    ```
    $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='corona'
-   INFO:root:rank=0 pagerank=4.5865e-03 url=www.lawfareblog.com/lawfare-podcast-united-nations-and-coronavirus-crisis
-   INFO:root:rank=1 pagerank=4.0464e-03 url=www.lawfareblog.com/house-oversight-committee-holds-day-two-hearing-government-coronavirus-response
-   INFO:root:rank=2 pagerank=2.6118e-03 url=www.lawfareblog.com/britains-coronavirus-response
-   INFO:root:rank=3 pagerank=2.5392e-03 url=www.lawfareblog.com/prosecuting-purposeful-coronavirus-exposure-terrorism
-   INFO:root:rank=4 pagerank=2.3560e-03 url=www.lawfareblog.com/israeli-emergency-regulations-location-tracking-coronavirus-carriers
-   INFO:root:rank=5 pagerank=2.2897e-03 url=www.lawfareblog.com/why-congress-conducting-business-usual-face-coronavirus
-   INFO:root:rank=6 pagerank=2.2729e-03 url=www.lawfareblog.com/livestream-house-oversight-committee-holds-hearing-government-coronavirus-response
-   INFO:root:rank=7 pagerank=2.2522e-03 url=www.lawfareblog.com/congressional-homeland-security-committees-seek-ways-support-state-federal-responses-coronavirus
-   INFO:root:rank=8 pagerank=2.1880e-03 url=www.lawfareblog.com/paper-hearing-experts-debate-digital-contact-tracing-and-coronavirus-privacy-concerns
-   INFO:root:rank=9 pagerank=2.0341e-03 url=www.lawfareblog.com/cyberlaw-podcast-how-israel-fighting-coronavirus
+    INFO:root:rank=0 pagerank=0.03100377693772316 url=www.lawfareblog.com/lawfare-podcast-united-nations-and-coronavirus-crisis
+    INFO:root:rank=1 pagerank=0.03089223802089691 url=www.lawfareblog.com/house-oversight-committee-holds-day-two-hearing-government-coronavirus-response
+    INFO:root:rank=2 pagerank=0.03070390224456787 url=www.lawfareblog.com/britains-coronavirus-response
+    INFO:root:rank=3 pagerank=0.030691534280776978 url=www.lawfareblog.com/prosecuting-purposeful-coronavirus-exposure-terrorism
+    INFO:root:rank=4 pagerank=0.0306704118847847 url=www.lawfareblog.com/israeli-emergency-regulations-location-tracking-coronavirus-carriers
+    INFO:root:rank=5 pagerank=0.03066255711019039 url=www.lawfareblog.com/why-congress-conducting-business-usual-face-coronavirus
+    INFO:root:rank=6 pagerank=0.030650457367300987 url=www.lawfareblog.com/congressional-homeland-security-committees-seek-ways-support-state-federal-responses-coronavirus
+    INFO:root:rank=7 pagerank=0.030636195093393326 url=www.lawfareblog.com/paper-hearing-experts-debate-digital-contact-tracing-and-coronavirus-privacy-concerns
+    INFO:root:rank=8 pagerank=0.030612481757998466 url=www.lawfareblog.com/house-subcommittee-voices-concerns-over-us-management-coronavirus
+    INFO:root:rank=9 pagerank=0.030601872131228447 url=www.lawfareblog.com/livestream-house-oversight-committee-holds-hearing-government-coronavirus-response
 
    $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='trump'
    INFO:root:rank=0 pagerank=6.6261e-02 url=www.lawfareblog.com/donald-trump-and-politically-weaponized-executive-branch

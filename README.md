@@ -117,16 +117,16 @@ This website provides legal analysis on US national security issues.
     INFO:root:rank=9 pagerank=0.030601872131228447 url=www.lawfareblog.com/livestream-house-oversight-committee-holds-hearing-government-coronavirus-response
 
    $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='trump'
-   INFO:root:rank=0 pagerank=6.6261e-02 url=www.lawfareblog.com/donald-trump-and-politically-weaponized-executive-branch
-   INFO:root:rank=1 pagerank=6.0200e-02 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
-   INFO:root:rank=2 pagerank=3.4972e-02 url=www.lawfareblog.com/trump-administrations-worrying-new-policy-israeli-settlements
-   INFO:root:rank=3 pagerank=3.2196e-02 url=www.lawfareblog.com/document-trump-revokes-obama-executive-order-counterterrorism-strike-casualty-reporting
-   INFO:root:rank=4 pagerank=3.0974e-02 url=www.lawfareblog.com/dc-circuit-overrules-district-courts-due-process-ruling-qasim-v-trump
-   INFO:root:rank=5 pagerank=2.8463e-02 url=www.lawfareblog.com/how-trumps-approach-middle-east-ignores-past-future-and-human-condition
-   INFO:root:rank=6 pagerank=2.5255e-02 url=www.lawfareblog.com/why-trump-cant-buy-greenland
-   INFO:root:rank=7 pagerank=2.2459e-02 url=www.lawfareblog.com/oral-argument-summary-qassim-v-trump
-   INFO:root:rank=8 pagerank=2.1465e-02 url=www.lawfareblog.com/dc-circuit-court-denies-trump-rehearing-mazars-case
-   INFO:root:rank=9 pagerank=2.1105e-02 url=www.lawfareblog.com/second-circuit-rules-mazars-must-hand-over-trump-tax-returns-new-york-prosecutors
+   INFO:root:rank=0 ranking=1.4298e-08 url=www.lawfareblog.com/donald-trump-and-politically-weaponized-executive-branch
+   INFO:root:rank=1 ranking=4.7393e-09 url=www.lawfareblog.com/did-donald-trump-jr-admit-violating-computer-fraud-and-abuse-act
+   INFO:root:rank=2 ranking=2.6929e-09 url=www.lawfareblog.com/documents-saifullah-paracha-v-donald-j-trump
+   INFO:root:rank=3 ranking=2.0187e-09 url=www.lawfareblog.com/cta9-decides-al-nashiri-v-macdonald
+   INFO:root:rank=4 ranking=1.8208e-09 url=www.lawfareblog.com/donald-trump-danger-our-national-security
+   INFO:root:rank=5 ranking=1.7227e-09 url=www.lawfareblog.com/burden-donald-trump
+   INFO:root:rank=6 ranking=1.6886e-09 url=www.lawfareblog.com/does-trump-want-lose-eo-battle-court-or-donald-mcgahn-simply-ineffectual-or-worse
+   INFO:root:rank=7 ranking=1.6787e-09 url=www.lawfareblog.com/nashiri-v-macdonald-dismissed
+   INFO:root:rank=8 ranking=1.6725e-09 url=www.lawfareblog.com/more-donald-trump-and-justice-department
+   INFO:root:rank=9 ranking=1.6718e-09 url=www.lawfareblog.com/donald-trump-paul-manafort-and-pesky-witness-tampering-statute
 
    $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='Iran'
    INFO:root:rank=0 pagerank=6.6149e-02 url=www.lawfareblog.com/praise-presidents-iran-tweets

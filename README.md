@@ -12,7 +12,6 @@ This website provides legal analysis on US national security issues.
 1. Run the following commands, and paste their output into the code blocks below.
 
    Task 1, part 1:
-
    ```
    $ python3 pagerank.py --data=small.csv.gz --verbose
    DEBUG:root:computing indices
@@ -102,7 +101,6 @@ This website provides legal analysis on US national security issues.
    ```
 
    Task 1, part 2:
-
    ```
    $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='corona'
    INFO:root:rank=0 ranking=1.7760e-11 url=www.lawfareblog.com/ted-cruz-vs-section-230-misrepresenting-communications-decency-act
@@ -129,32 +127,31 @@ This website provides legal analysis on US national security issues.
    INFO:root:rank=9 ranking=1.6718e-09 url=www.lawfareblog.com/donald-trump-paul-manafort-and-pesky-witness-tampering-statute
 
    $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='Iran'
-   INFO:root:rank=0 pagerank=6.6149e-02 url=www.lawfareblog.com/praise-presidents-iran-tweets
-   INFO:root:rank=1 pagerank=2.9202e-02 url=www.lawfareblog.com/how-us-iran-tensions-could-disrupt-iraqs-fragile-peace
-   INFO:root:rank=2 pagerank=1.7711e-02 url=www.lawfareblog.com/cyber-command-operational-update-clarifying-june-2019-iran-operation
-   INFO:root:rank=3 pagerank=1.4606e-02 url=www.lawfareblog.com/aborted-iran-strike-fine-line-between-necessity-and-revenge
-   INFO:root:rank=4 pagerank=8.4519e-03 url=www.lawfareblog.com/iranian-hostage-crisis-and-its-effect-american-politics
-   INFO:root:rank=5 pagerank=8.3997e-03 url=www.lawfareblog.com/parsing-state-departments-letter-use-force-against-iran
-   INFO:root:rank=6 pagerank=8.2589e-03 url=www.lawfareblog.com/announcing-united-states-and-use-force-against-iran-new-lawfare-e-book
-   INFO:root:rank=7 pagerank=8.0568e-03 url=www.lawfareblog.com/trump-moves-cut-irans-oil-revenues-whats-his-endgame
-   INFO:root:rank=8 pagerank=7.1946e-03 url=www.lawfareblog.com/us-names-iranian-revolutionary-guard-terrorist-organization-and-sanctions-international-criminal
-   INFO:root:rank=9 pagerank=5.9410e-03 url=www.lawfareblog.com/iran-shoots-down-us-drone-domestic-and-international-legal-implications
+   INFO:root:rank=0 ranking=2.8981e-07 url=www.lawfareblog.com/iranian-hostage-crisis-and-its-effect-american-politics
+   INFO:root:rank=1 ranking=2.8366e-07 url=www.lawfareblog.com/and-then-there-was-one-tehran-still-has-one-iranian-american-behind-bars
+   INFO:root:rank=2 ranking=2.6836e-07 url=www.lawfareblog.com/us-names-iranian-revolutionary-guard-terrorist-organization-and-sanctions-international-criminal
+   INFO:root:rank=3 ranking=1.9256e-07 url=www.lawfareblog.com/trump-wants-bigger-better-deal-iran-what-does-tehran-want
+   INFO:root:rank=4 ranking=1.9230e-07 url=www.lawfareblog.com/iranian-terrorism-victims-ask-court-block-release-iranian-assets-under-nuclear-deal
+   INFO:root:rank=5 ranking=1.8720e-07 url=www.lawfareblog.com/afghanistan-another-victory-tehran
+   INFO:root:rank=6 ranking=1.4129e-07 url=www.lawfareblog.com/iranian-protesters-strike-heart-regimes-revolutionary-legitimacy
+   INFO:root:rank=7 ranking=1.0117e-07 url=www.lawfareblog.com/what-has-iran-done-now-primer-recent-iranian-missile-tests-and-sanctions
+   INFO:root:rank=8 ranking=1.0044e-07 url=www.lawfareblog.com/two-further-notes-npt-and-iranian-legal-arguments
+   INFO:root:rank=9 ranking=9.9820e-08 url=www.lawfareblog.com/iranian-missile-launch-and-gray-ladys-confusion
    ```
 
    Task 1, part 3:
-
    ```
    $ python3 pagerank.py --data=lawfareblog.csv.gz
-   INFO:root:rank=0 pagerank=8.4193e+00 url=www.lawfareblog.com/litigation-documents-related-appointment-matthew-whitaker-acting-attorney-general
-   INFO:root:rank=1 pagerank=8.4193e+00 url=www.lawfareblog.com/lawfare-job-board
-   INFO:root:rank=2 pagerank=8.4193e+00 url=www.lawfareblog.com/documents-related-mueller-investigation
-   INFO:root:rank=3 pagerank=8.4193e+00 url=www.lawfareblog.com/litigation-documents-resources-related-travel-ban
-   INFO:root:rank=4 pagerank=8.4193e+00 url=www.lawfareblog.com/subscribe-lawfare
-   INFO:root:rank=5 pagerank=8.4193e+00 url=www.lawfareblog.com/masthead
-   INFO:root:rank=6 pagerank=8.4193e+00 url=www.lawfareblog.com/topics
-   INFO:root:rank=7 pagerank=8.4193e+00 url=www.lawfareblog.com/our-comments-policy
-   INFO:root:rank=8 pagerank=8.4193e+00 url=www.lawfareblog.com/upcoming-events
-   INFO:root:rank=9 pagerank=8.4193e+00 url=www.lawfareblog.com/about-lawfare-brief-history-term-and-site
+   INFO:root:rank=0 ranking=2.8741e-01 url=www.lawfareblog.com/lawfare-job-board
+   INFO:root:rank=1 ranking=2.8741e-01 url=www.lawfareblog.com/masthead
+   INFO:root:rank=2 ranking=2.8741e-01 url=www.lawfareblog.com/litigation-documents-related-appointment-matthew-whitaker-acting-attorney-general
+   INFO:root:rank=3 ranking=2.8741e-01 url=www.lawfareblog.com/documents-related-mueller-investigation
+   INFO:root:rank=4 ranking=2.8741e-01 url=www.lawfareblog.com/topics
+   INFO:root:rank=5 ranking=2.8741e-01 url=www.lawfareblog.com/about-lawfare-brief-history-term-and-site
+   INFO:root:rank=6 ranking=2.8741e-01 url=www.lawfareblog.com/snowden-revelations
+   INFO:root:rank=7 ranking=2.8741e-01 url=www.lawfareblog.com/support-lawfare
+   INFO:root:rank=8 ranking=2.8741e-01 url=www.lawfareblog.com/upcoming-events
+   INFO:root:rank=9 ranking=2.8741e-01 url=www.lawfareblog.com/our-comments-policy
 
    $ python3 pagerank.py --data=lawfareblog.csv.gz --filter_ratio=0.2
    INFO:root:rank=0 pagerank=4.6096e+00 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns

@@ -171,26 +171,31 @@ class WebGraph():
         for i in range(n):
             occurrences, queryScore, wordSimilarity = 0,0,0
             url = self._index_to_url(i)
+
             if url_satisfies_query_no_similar(url, query):
                 occurrences += 1
                 wordSimilarity += similarityWeight
+
             for word in range(10):
                 w = similarWords[word][0]
                 if url_satisfies_query_no_similar(url,w):
                     occurrences += 1
                     wordSimilarity += similarWords[word][1]**p
+
             queryScore += occurrences*wordSimilarity
             pi[i] += queryScore
 
         vals,indices = torch.topk(pi,n)
-
         matches = 0
+
         for i in range(n):
             if matches >= max_results:
                 break
+
             index = indices[i].item()
             url = self._index_to_url(index)
             pagerank = vals[i].item()
+
             if url_satisfies_query(url,query):
                 logging.info(f'rank={matches} pagerank={pagerank} url={url}')
                 matches += 1
@@ -206,6 +211,7 @@ def url_satisfies_query_no_similar(url,query):
             num_terms+=1
             if term in url:
                 satisfies = True
+
     if num_terms==0:
         satisfies=True
 
@@ -254,6 +260,7 @@ def url_satisfies_query(url, query):
             occurrences += 1
             if term in url:
                 satisfies = True
+                
     if occurrences == 0:
         satisfies = True
 

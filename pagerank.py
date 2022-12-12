@@ -172,9 +172,24 @@ class WebGraph():
         Logs all urls that match the query.
         Results are displayed in sorted order according to the pagerank vector pi.
         '''
+        p = 45
         n = self.P.shape[0]
-        vals, indices = torch.topk(pi, n)
+        mostSimilarWordsTuple = vectors.most_similar(args.search_query)
 
+        for i in range(n):
+            occurrences = 0
+            queryScore = 0
+            wordSimilarity = 0
+            url = self._index_to_url(i)
+            for j in range(len(mostSimilarWordsTuple)):
+                word = mostSimilarWordsTuple[j][0]
+
+                if url_satisfies_query(url,word):
+                    occurrences +=1
+                    queryScore += (occurrences * (mostSimilarWordsTuple[j][1]**p))
+            pi[i] += queryScore
+            
+        vals, indices = torch.topk(pi, n)
         matches = 0
         for i in range(n):
             if matches >= max_results:

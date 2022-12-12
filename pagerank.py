@@ -12,7 +12,7 @@ import csv
 
 import logging
 import gensim.downloader
-vectors = gensim.downloader.load('conceptnet-numberbatch-17-06-300')
+vectors = gensim.downloader.load('glove-twitter-200')
 
 
 class WebGraph():

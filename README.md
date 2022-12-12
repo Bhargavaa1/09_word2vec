@@ -114,7 +114,7 @@ you should run the program on the `data/small.csv.gz` graph.
 For my implementation, I get the following output.
 
 ```
-$ python3 pagerank.py --data=data/small.csv.gz --verbose
+$ python3 pagerank.py --data=small.csv.gz --verbose
 DEBUG:root:computing indices
 DEBUG:root:computing values
 DEBUG:root:i=0 residual=2.5629e-01
@@ -423,7 +423,7 @@ but a simple keyword search for corona or related terms would not find these art
    Task 1, part 1:
 
    ```
-   $ python3 pagerank.py --data=data/small.csv.gz --verbose
+   $ python3 pagerank.py --data=small.csv.gz --verbose
    DEBUG:root:computing indices
    DEBUG:root:computing values
    DEBUG:root:i=0 residual=0.3775096535682678
@@ -513,7 +513,7 @@ but a simple keyword search for corona or related terms would not find these art
    Task 1, part 2:
 
    ```
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz --search_query='corona'
+   $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='corona'
    INFO:root:rank=0 pagerank=4.5865e-03 url=www.lawfareblog.com/lawfare-podcast-united-nations-and-coronavirus-crisis
    INFO:root:rank=1 pagerank=4.0464e-03 url=www.lawfareblog.com/house-oversight-committee-holds-day-two-hearing-government-coronavirus-response
    INFO:root:rank=2 pagerank=2.6118e-03 url=www.lawfareblog.com/britains-coronavirus-response
@@ -525,7 +525,7 @@ but a simple keyword search for corona or related terms would not find these art
    INFO:root:rank=8 pagerank=2.1880e-03 url=www.lawfareblog.com/paper-hearing-experts-debate-digital-contact-tracing-and-coronavirus-privacy-concerns
    INFO:root:rank=9 pagerank=2.0341e-03 url=www.lawfareblog.com/cyberlaw-podcast-how-israel-fighting-coronavirus
 
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz --search_query='trump'
+   $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='trump'
    INFO:root:rank=0 pagerank=6.6261e-02 url=www.lawfareblog.com/donald-trump-and-politically-weaponized-executive-branch
    INFO:root:rank=1 pagerank=6.0200e-02 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
    INFO:root:rank=2 pagerank=3.4972e-02 url=www.lawfareblog.com/trump-administrations-worrying-new-policy-israeli-settlements
@@ -537,7 +537,7 @@ but a simple keyword search for corona or related terms would not find these art
    INFO:root:rank=8 pagerank=2.1465e-02 url=www.lawfareblog.com/dc-circuit-court-denies-trump-rehearing-mazars-case
    INFO:root:rank=9 pagerank=2.1105e-02 url=www.lawfareblog.com/second-circuit-rules-mazars-must-hand-over-trump-tax-returns-new-york-prosecutors
 
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz --search_query='Iran'
+   $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='Iran'
    INFO:root:rank=0 pagerank=6.6149e-02 url=www.lawfareblog.com/praise-presidents-iran-tweets
    INFO:root:rank=1 pagerank=2.9202e-02 url=www.lawfareblog.com/how-us-iran-tensions-could-disrupt-iraqs-fragile-peace
    INFO:root:rank=2 pagerank=1.7711e-02 url=www.lawfareblog.com/cyber-command-operational-update-clarifying-june-2019-iran-operation
@@ -553,7 +553,7 @@ but a simple keyword search for corona or related terms would not find these art
    Task 1, part 3:
 
    ```
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz
+   $ python3 pagerank.py --data=lawfareblog.csv.gz
    INFO:root:rank=0 pagerank=8.4193e+00 url=www.lawfareblog.com/litigation-documents-related-appointment-matthew-whitaker-acting-attorney-general
    INFO:root:rank=1 pagerank=8.4193e+00 url=www.lawfareblog.com/lawfare-job-board
    INFO:root:rank=2 pagerank=8.4193e+00 url=www.lawfareblog.com/documents-related-mueller-investigation
@@ -565,7 +565,7 @@ but a simple keyword search for corona or related terms would not find these art
    INFO:root:rank=8 pagerank=8.4193e+00 url=www.lawfareblog.com/upcoming-events
    INFO:root:rank=9 pagerank=8.4193e+00 url=www.lawfareblog.com/about-lawfare-brief-history-term-and-site
 
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz --filter_ratio=0.2
+   $ python3 pagerank.py --data=lawfareblog.csv.gz --filter_ratio=0.2
    INFO:root:rank=0 pagerank=4.6096e+00 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
    INFO:root:rank=1 pagerank=2.9870e+00 url=www.lawfareblog.com/livestream-nov-21-impeachment-hearings-0
    INFO:root:rank=2 pagerank=2.9672e+00 url=www.lawfareblog.com/opening-statement-david-holmes
@@ -581,7 +581,7 @@ but a simple keyword search for corona or related terms would not find these art
    Task 1, part 4:
 
    ```
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz --verbose
+   $ python3 pagerank.py --data=lawfareblog.csv.gz --verbose
    INFO:root:rank=0 pagerank=8.4193e+00 url=www.lawfareblog.com/litigation-documents-related-appointment-matthew-whitaker-acting-attorney-general
    INFO:root:rank=1 pagerank=8.4193e+00 url=www.lawfareblog.com/lawfare-job-board
    INFO:root:rank=2 pagerank=8.4193e+00 url=www.lawfareblog.com/documents-related-mueller-investigation
@@ -593,7 +593,7 @@ but a simple keyword search for corona or related terms would not find these art
    INFO:root:rank=8 pagerank=8.4193e+00 url=www.lawfareblog.com/upcoming-events
    INFO:root:rank=9 pagerank=8.4193e+00 url=www.lawfareblog.com/about-lawfare-brief-history-term-and-site
 
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz --verbose --alpha=0.99999
+   $ python3 pagerank.py --data=lawfareblog.csv.gz --verbose --alpha=0.99999
    INFO:root:rank=0 pagerank=4.6096e+00 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
    INFO:root:rank=1 pagerank=2.9870e+00 url=www.lawfareblog.com/livestream-nov-21-impeachment-hearings-0
    INFO:root:rank=2 pagerank=2.9672e+00 url=www.lawfareblog.com/opening-statement-david-holmes
@@ -605,7 +605,7 @@ but a simple keyword search for corona or related terms would not find these art
    INFO:root:rank=8 pagerank=1.6809e+00 url=www.lawfareblog.com/summary-david-holmess-deposition-testimony
    INFO:root:rank=9 pagerank=9.8355e-01 url=www.lawfareblog.com/events
 
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz --verbose --filter_ratio=0.2
+   $ python3 pagerank.py --data=lawfareblog.csv.gz --verbose --filter_ratio=0.2
    INFO:root:rank=0 pagerank=4.6096e+00 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
    INFO:root:rank=1 pagerank=2.9870e+00 url=www.lawfareblog.com/livestream-nov-21-impeachment-hearings-0
    INFO:root:rank=2 pagerank=2.9672e+00 url=www.lawfareblog.com/opening-statement-david-holmes
@@ -617,7 +617,7 @@ but a simple keyword search for corona or related terms would not find these art
    INFO:root:rank=8 pagerank=1.6809e+00 url=www.lawfareblog.com/summary-david-holmess-deposition-testimony
    INFO:root:rank=9 pagerank=9.8355e-01 url=www.lawfareblog.com/events
 
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz --verbose --filter_ratio=0.2 --alpha=0.99999
+   $ python3 pagerank.py --data=lawfareblog.csv.gz --verbose --filter_ratio=0.2 --alpha=0.99999
    INFO:root:rank=0 pagerank=5.2386e+01 url=www.lawfareblog.com/lawfare-live-covid-19-speech-and-surveillance
    INFO:root:rank=1 pagerank=5.2386e+01 url=www.lawfareblog.com/covid-19-speech-and-surveillance-response
    INFO:root:rank=2 pagerank=7.9439e+00 url=www.lawfareblog.com/cost-using-zero-days
@@ -633,7 +633,7 @@ but a simple keyword search for corona or related terms would not find these art
    Task 2, part 1:
 
    ```
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz --filter_ratio=0.2 --personalization_vector_query='corona'
+   $ python3 pagerank.py --data=lawfareblog.csv.gz --filter_ratio=0.2 --personalization_vector_query='corona'
    INFO:root:rank=0 pagerank=8.8870e-01 url=www.lawfareblog.com/covid-19-speech-and-surveillance-response
    INFO:root:rank=1 pagerank=8.8867e-01 url=www.lawfareblog.com/lawfare-live-covid-19-speech-and-surveillance
    INFO:root:rank=2 pagerank=1.8256e-01 url=www.lawfareblog.com/chinatalk-how-party-takes-its-propaganda-global
@@ -649,7 +649,7 @@ but a simple keyword search for corona or related terms would not find these art
    Task 2, part 2:
 
    ```
-   $ python3 pagerank.py --data=data/lawfareblog.csv.gz --filter_ratio=0.2 --personalization_vector_query='corona' --search_query='-corona'
+   $ python3 pagerank.py --data=lawfareblog.csv.gz --filter_ratio=0.2 --personalization_vector_query='corona' --search_query='-corona'
    INFO:root:rank=0 pagerank=8.8870e-01 url=www.lawfareblog.com/covid-19-speech-and-surveillance-response
    INFO:root:rank=1 pagerank=8.8867e-01 url=www.lawfareblog.com/lawfare-live-covid-19-speech-and-surveillance
    INFO:root:rank=2 pagerank=1.8256e-01 url=www.lawfareblog.com/chinatalk-how-party-takes-its-propaganda-global

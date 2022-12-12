@@ -132,7 +132,7 @@ class WebGraph():
             a = torch.ones([n,1])
             a[nondangling_nodes] = 0
 
-            # create variables if none given
+            # Create variables if none given
             if v is None:
                 v = torch.Tensor([1/n]*n)
                 v = torch.unsqueeze(v,1)
@@ -143,7 +143,7 @@ class WebGraph():
                 x0 = torch.unsqueeze(x0,1)
             x0 /= torch.norm(x0)
 
-            # main loop
+            # Main loop
             xprev = x0
             x = xprev.detach().clone()
             for i in range(max_iterations):
@@ -157,7 +157,7 @@ class WebGraph():
                         alpha=alpha
                         )
                 x /= torch.norm(x)
-                # output debug information
+                # Output debug information
                 residual = torch.norm(x-xprev)
                 logging.debug(f'i={i} residual={residual}')
 
@@ -168,7 +168,7 @@ class WebGraph():
             return x.squeeze()
 
 
-    def search(self, pi, query='', max_results=10,):
+    def search(self, pi, query='', max_results=10):
         '''
         Logs all urls that match the query.
         Results are displayed in sorted order according to the pagerank vector pi.

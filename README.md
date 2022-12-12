@@ -154,32 +154,32 @@ This website provides legal analysis on US national security issues.
    INFO:root:rank=9 ranking=2.8741e-01 url=www.lawfareblog.com/our-comments-policy
 
    $ python3 pagerank.py --data=lawfareblog.csv.gz --filter_ratio=0.2
-   INFO:root:rank=0 pagerank=4.6096e+00 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
-   INFO:root:rank=1 pagerank=2.9870e+00 url=www.lawfareblog.com/livestream-nov-21-impeachment-hearings-0
-   INFO:root:rank=2 pagerank=2.9672e+00 url=www.lawfareblog.com/opening-statement-david-holmes
-   INFO:root:rank=3 pagerank=2.0175e+00 url=www.lawfareblog.com/senate-examines-threats-homeland
-   INFO:root:rank=4 pagerank=1.8771e+00 url=www.lawfareblog.com/what-make-first-day-impeachment-hearings
-   INFO:root:rank=5 pagerank=1.8764e+00 url=www.lawfareblog.com/livestream-house-armed-services-committee-hearing-f-35-program
-   INFO:root:rank=6 pagerank=1.8695e+00 url=www.lawfareblog.com/whats-house-resolution-impeachment
-   INFO:root:rank=7 pagerank=1.7657e+00 url=www.lawfareblog.com/congress-us-policy-toward-syria-and-turkey-overview-recent-hearings
-   INFO:root:rank=8 pagerank=1.6809e+00 url=www.lawfareblog.com/summary-david-holmess-deposition-testimony
-   INFO:root:rank=9 pagerank=9.8355e-01 url=www.lawfareblog.com/events
+   INFO:root:rank=0 ranking=3.4696e-01 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
+   INFO:root:rank=1 ranking=2.9521e-01 url=www.lawfareblog.com/livestream-nov-21-impeachment-hearings-0
+   INFO:root:rank=2 ranking=2.9040e-01 url=www.lawfareblog.com/opening-statement-david-holmes
+   INFO:root:rank=3 ranking=1.5179e-01 url=www.lawfareblog.com/lawfare-podcast-ben-nimmo-whack-mole-game-disinformation
+   INFO:root:rank=4 ranking=1.5099e-01 url=www.lawfareblog.com/todays-headlines-and-commentary-1963
+   INFO:root:rank=5 ranking=1.5099e-01 url=www.lawfareblog.com/todays-headlines-and-commentary-1964
+   INFO:root:rank=6 ranking=1.5071e-01 url=www.lawfareblog.com/lawfare-podcast-week-was-impeachment
+   INFO:root:rank=7 ranking=1.4957e-01 url=www.lawfareblog.com/todays-headlines-and-commentary-1962
+   INFO:root:rank=8 ranking=1.4367e-01 url=www.lawfareblog.com/cyberlaw-podcast-mistrusting-google
+   INFO:root:rank=9 ranking=1.4240e-01 url=www.lawfareblog.com/lawfare-podcast-bonus-edition-gordon-sondland-vs-committee-no-bull
    ```
 
    Task 1, part 4:
 
    ```
    $ python3 pagerank.py --data=lawfareblog.csv.gz --verbose
-   INFO:root:rank=0 pagerank=8.4193e+00 url=www.lawfareblog.com/litigation-documents-related-appointment-matthew-whitaker-acting-attorney-general
-   INFO:root:rank=1 pagerank=8.4193e+00 url=www.lawfareblog.com/lawfare-job-board
-   INFO:root:rank=2 pagerank=8.4193e+00 url=www.lawfareblog.com/documents-related-mueller-investigation
-   INFO:root:rank=3 pagerank=8.4193e+00 url=www.lawfareblog.com/litigation-documents-resources-related-travel-ban
-   INFO:root:rank=4 pagerank=8.4193e+00 url=www.lawfareblog.com/subscribe-lawfare
-   INFO:root:rank=5 pagerank=8.4193e+00 url=www.lawfareblog.com/masthead
-   INFO:root:rank=6 pagerank=8.4193e+00 url=www.lawfareblog.com/topics
-   INFO:root:rank=7 pagerank=8.4193e+00 url=www.lawfareblog.com/our-comments-policy
-   INFO:root:rank=8 pagerank=8.4193e+00 url=www.lawfareblog.com/upcoming-events
-   INFO:root:rank=9 pagerank=8.4193e+00 url=www.lawfareblog.com/about-lawfare-brief-history-term-and-site
+   INFO:root:rank=0 ranking=2.8741e-01 url=www.lawfareblog.com/lawfare-job-board
+   INFO:root:rank=1 ranking=2.8741e-01 url=www.lawfareblog.com/masthead
+   INFO:root:rank=2 ranking=2.8741e-01 url=www.lawfareblog.com/litigation-documents-related-appointment-matthew-whitaker-acting-attorney-general
+   INFO:root:rank=3 ranking=2.8741e-01 url=www.lawfareblog.com/documents-related-mueller-investigation
+   INFO:root:rank=4 ranking=2.8741e-01 url=www.lawfareblog.com/topics
+   INFO:root:rank=5 ranking=2.8741e-01 url=www.lawfareblog.com/about-lawfare-brief-history-term-and-site
+   INFO:root:rank=6 ranking=2.8741e-01 url=www.lawfareblog.com/snowden-revelations
+   INFO:root:rank=7 ranking=2.8741e-01 url=www.lawfareblog.com/support-lawfare
+   INFO:root:rank=8 ranking=2.8741e-01 url=www.lawfareblog.com/upcoming-events
+   INFO:root:rank=9 ranking=2.8741e-01 url=www.lawfareblog.com/our-comments-policy
 
    $ python3 pagerank.py --data=lawfareblog.csv.gz --verbose --alpha=0.99999
    INFO:root:rank=0 pagerank=4.6096e+00 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
@@ -194,16 +194,16 @@ This website provides legal analysis on US national security issues.
    INFO:root:rank=9 pagerank=9.8355e-01 url=www.lawfareblog.com/events
 
    $ python3 pagerank.py --data=lawfareblog.csv.gz --verbose --filter_ratio=0.2
-   INFO:root:rank=0 pagerank=4.6096e+00 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
-   INFO:root:rank=1 pagerank=2.9870e+00 url=www.lawfareblog.com/livestream-nov-21-impeachment-hearings-0
-   INFO:root:rank=2 pagerank=2.9672e+00 url=www.lawfareblog.com/opening-statement-david-holmes
-   INFO:root:rank=3 pagerank=2.0175e+00 url=www.lawfareblog.com/senate-examines-threats-homeland
-   INFO:root:rank=4 pagerank=1.8771e+00 url=www.lawfareblog.com/what-make-first-day-impeachment-hearings
-   INFO:root:rank=5 pagerank=1.8764e+00 url=www.lawfareblog.com/livestream-house-armed-services-committee-hearing-f-35-program
-   INFO:root:rank=6 pagerank=1.8695e+00 url=www.lawfareblog.com/whats-house-resolution-impeachment
-   INFO:root:rank=7 pagerank=1.7657e+00 url=www.lawfareblog.com/congress-us-policy-toward-syria-and-turkey-overview-recent-hearings
-   INFO:root:rank=8 pagerank=1.6809e+00 url=www.lawfareblog.com/summary-david-holmess-deposition-testimony
-   INFO:root:rank=9 pagerank=9.8355e-01 url=www.lawfareblog.com/events
+   INFO:root:rank=0 ranking=3.4696e-01 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
+   INFO:root:rank=1 ranking=2.9521e-01 url=www.lawfareblog.com/livestream-nov-21-impeachment-hearings-0
+   INFO:root:rank=2 ranking=2.9040e-01 url=www.lawfareblog.com/opening-statement-david-holmes
+   INFO:root:rank=3 ranking=1.5179e-01 url=www.lawfareblog.com/lawfare-podcast-ben-nimmo-whack-mole-game-disinformation
+   INFO:root:rank=4 ranking=1.5099e-01 url=www.lawfareblog.com/todays-headlines-and-commentary-1963
+   INFO:root:rank=5 ranking=1.5099e-01 url=www.lawfareblog.com/todays-headlines-and-commentary-1964
+   INFO:root:rank=6 ranking=1.5071e-01 url=www.lawfareblog.com/lawfare-podcast-week-was-impeachment
+   INFO:root:rank=7 ranking=1.4957e-01 url=www.lawfareblog.com/todays-headlines-and-commentary-1962
+   INFO:root:rank=8 ranking=1.4367e-01 url=www.lawfareblog.com/cyberlaw-podcast-mistrusting-google
+   INFO:root:rank=9 ranking=1.4240e-01 url=www.lawfareblog.com/lawfare-podcast-bonus-edition-gordon-sondland-vs-committee-no-bull
 
    $ python3 pagerank.py --data=lawfareblog.csv.gz --verbose --filter_ratio=0.2 --alpha=0.99999
    INFO:root:rank=0 pagerank=5.2386e+01 url=www.lawfareblog.com/lawfare-live-covid-19-speech-and-surveillance

@@ -29,7 +29,6 @@ class WebGraph():
         from collections import defaultdict
         target_counts = defaultdict(lambda: 0)
 
-        # loop through filename to extract the indices
         logging.debug('computing indices')
         with gzip.open(filename,newline='',mode='rt') as f:
             for i,row in enumerate(csv.DictReader(f)):
@@ -44,7 +43,6 @@ class WebGraph():
                 target_counts[target] += 1
                 indices.append([source,target])
 
-        # remove urls with too many in-links
         if filter_ratio is not None:
             new_indices = []
             for source,target in indices:
@@ -52,7 +50,6 @@ class WebGraph():
                     new_indices.append([source,target])
             indices = new_indices
 
-        # compute the values that correspond to the indices variable
         logging.debug('computing values')
         values = []
         last_source = indices[0][0]
@@ -66,7 +63,6 @@ class WebGraph():
                 last_source = source
                 last_i = i
 
-        # generate the sparse matrix
         i = torch.LongTensor(indices).t()
         v = torch.FloatTensor(values)
         n = len(self.url_dict)
@@ -124,12 +120,10 @@ class WebGraph():
         with torch.no_grad():
             n = self.P.shape[0]
 
-            # Calculate a
-            nondangling_nodes = torch.sparse.sum(self.P,1).indices()
+            non_dangling_nodes = torch.sparse.sum(self.P,1).indices()
             a = torch.ones([n,1])
-            a[nondangling_nodes] = 0
+            a[non_dangling_nodes] = 0
 
-            # create variables if none given
             if v is None:
                 v = torch.Tensor([1/n]*n)
                 v = torch.unsqueeze(v,1)
@@ -140,7 +134,6 @@ class WebGraph():
                 x0 = torch.unsqueeze(x0,1)
             x0 /= torch.norm(x0)
 
-            # main loop
             xprev = x0
             x = xprev.detach().clone()
             for i in range(max_iterations):
@@ -156,52 +149,38 @@ class WebGraph():
                         alpha=alpha
                         )
                 x /= torch.norm(x)
-                # output debug information
                 residual = torch.norm(x-xprev)
                 logging.debug(f'i={i} residual={residual}')
 
-                # early stop when sufficient accuracy reached
                 if residual < epsilon:
                     break
-
-            #x = x0.squeeze()
             return x.squeeze()
 
 
-    def search(self, pi, query='', max_results=10, s_weight = .03, power =30):
+    def search(self, pi, query='', max_results=10):
         '''
         Logs all urls that match the query.
         Results are displayed in sorted order according to the pagerank vector pi.
         '''
+        p = 30
+        similarityWeight = 0.03
         n = self.P.shape[0]
         k = min(max_results, n)
-
-        #changes
-
-        S = vectors.most_similar(args.search_query)
+        similarWords = vectors.most_similar(args.search_query)
 
         for i in range(n):
-            new_n, score, w_weight = 0,0,0
-
-            urll = self._index_to_url(i)
-
-            if is_url_satisfies_query(urll, query):
-                new_n+=1
-                w_weight+=s_weight
-
+            occurrences, queryScore, wordSimilarity = 0,0,0
+            url = self._index_to_url(i)
+            if url_satisfies_query_no_similar(url, query):
+                occurrences += 1
+                wordSimilarity += similarityWeight
             for word in range(10):
-                w= S[word][0]
-
-                if is_url_satisfies_query(urll,w):
-                    new_n+=1
-                    w_weight+=S[word][1]**power
-
-            score+= new_n*w_weight
-
-            pi[i]+=score
-
-
-        #old code
+                w = similarWords[word][0]
+                if url_satisfies_query_no_similar(url,w):
+                    occurrences += 1
+                    wordSimilarity += similarWords[word][1]**p
+            queryScore += occurrences*wordSimilarity
+            pi[i] += queryScore
 
         vals,indices = torch.topk(pi,n)
 
@@ -217,7 +196,7 @@ class WebGraph():
                 matches += 1
 
 
-def is_url_satisfies_query(url,query):
+def url_satisfies_query_no_similar(url,query):
     satisfies = False
     terms = query.split()
 
@@ -264,19 +243,19 @@ def url_satisfies_query(url, query):
     '''
     satisfies = False
     terms = query.split()
-    synonyms = vectors.most_similar(args.search_query)
+    similarWords = vectors.most_similar(args.search_query)
 
-    for i in range(8):
-        terms.append(synonyms[i][0])
+    for i in range(5):
+        terms.append(similarWords[i][0])
 
-    num_terms=0
+    occurrences = 0
     for term in terms:
         if term[0] != '-':
-            num_terms+=1
+            occurrences += 1
             if term in url:
                 satisfies = True
-    if num_terms==0:
-        satisfies=True
+    if occurrences == 0:
+        satisfies = True
 
     for term in terms:
         if term[0] == '-':
@@ -297,9 +276,6 @@ if __name__=='__main__':
     parser.add_argument('--epsilon', type=float, default=1e-6)
     parser.add_argument('--max_results', type=int, default=10)
     parser.add_argument('--verbose', action='store_true')
-    #add some argument to be parsed 
-    parser.add_argument('--power',type=int, default=30)
-    parser.add_argument('--s_weight',type=float, default=.03)
     args = parser.parse_args()
 
     if args.verbose:
@@ -310,4 +286,4 @@ if __name__=='__main__':
     g = WebGraph(args.data, filter_ratio=args.filter_ratio)
     v = g.make_personalization_vector(args.personalization_vector_query)
     pi = g.power_method(v, alpha=args.alpha, max_iterations=args.max_iterations, epsilon=args.epsilon)
-    g.search(pi, query=args.search_query, max_results=args.max_results,s_weight=args.s_weight, power=args.power)
+    g.search(pi, query=args.search_query, max_results=args.max_results)

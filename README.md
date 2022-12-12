@@ -105,16 +105,16 @@ This website provides legal analysis on US national security issues.
 
    ```
    $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='corona'
-    INFO:root:rank=0 pagerank=0.03100377693772316 url=www.lawfareblog.com/lawfare-podcast-united-nations-and-coronavirus-crisis
-    INFO:root:rank=1 pagerank=0.03089223802089691 url=www.lawfareblog.com/house-oversight-committee-holds-day-two-hearing-government-coronavirus-response
-    INFO:root:rank=2 pagerank=0.03070390224456787 url=www.lawfareblog.com/britains-coronavirus-response
-    INFO:root:rank=3 pagerank=0.030691534280776978 url=www.lawfareblog.com/prosecuting-purposeful-coronavirus-exposure-terrorism
-    INFO:root:rank=4 pagerank=0.0306704118847847 url=www.lawfareblog.com/israeli-emergency-regulations-location-tracking-coronavirus-carriers
-    INFO:root:rank=5 pagerank=0.03066255711019039 url=www.lawfareblog.com/why-congress-conducting-business-usual-face-coronavirus
-    INFO:root:rank=6 pagerank=0.030650457367300987 url=www.lawfareblog.com/congressional-homeland-security-committees-seek-ways-support-state-federal-responses-coronavirus
-    INFO:root:rank=7 pagerank=0.030636195093393326 url=www.lawfareblog.com/paper-hearing-experts-debate-digital-contact-tracing-and-coronavirus-privacy-concerns
-    INFO:root:rank=8 pagerank=0.030612481757998466 url=www.lawfareblog.com/house-subcommittee-voices-concerns-over-us-management-coronavirus
-    INFO:root:rank=9 pagerank=0.030601872131228447 url=www.lawfareblog.com/livestream-house-oversight-committee-holds-hearing-government-coronavirus-response
+   INFO:root:rank=0 ranking=1.7760e-11 url=www.lawfareblog.com/ted-cruz-vs-section-230-misrepresenting-communications-decency-act
+   INFO:root:rank=1 ranking=1.7104e-11 url=www.lawfareblog.com/guess-what-play-ted-cruz-read-filibuster
+   INFO:root:rank=2 ranking=1.7055e-11 url=www.lawfareblog.com/publicity-stunt-postscript-senators-cruz-and-paul-propose-legislation-targeted-killing-domestic
+   INFO:root:rank=3 ranking=0.0000e+00 url=www.lawfareblog.com/lawfare-podcast-united-nations-and-coronavirus-crisis
+   INFO:root:rank=4 ranking=0.0000e+00 url=www.lawfareblog.com/house-oversight-committee-holds-day-two-hearing-government-coronavirus-response
+   INFO:root:rank=5 ranking=0.0000e+00 url=www.lawfareblog.com/britains-coronavirus-response
+   INFO:root:rank=6 ranking=0.0000e+00 url=www.lawfareblog.com/prosecuting-purposeful-coronavirus-exposure-terrorism
+   INFO:root:rank=7 ranking=0.0000e+00 url=www.lawfareblog.com/israeli-emergency-regulations-location-tracking-coronavirus-carriers
+   INFO:root:rank=8 ranking=0.0000e+00 url=www.lawfareblog.com/why-congress-conducting-business-usual-face-coronavirus
+   INFO:root:rank=9 ranking=0.0000e+00 url=www.lawfareblog.com/congressional-homeland-security-committees-seek-ways-support-state-federal-responses-coronavirus
 
    $ python3 pagerank.py --data=lawfareblog.csv.gz --search_query='trump'
    INFO:root:rank=0 ranking=1.4298e-08 url=www.lawfareblog.com/donald-trump-and-politically-weaponized-executive-branch

@@ -9,9 +9,11 @@ import math
 import torch
 import gzip
 import csv
+
 import logging
-import gensim.downloader as api
-vectors = api.load('word2vec-google-news-300')
+import gensim.downloader
+vectors = gensim.downloader.load('glove-wiki-gigaword-300')
+
 
 class WebGraph():
 
@@ -29,6 +31,7 @@ class WebGraph():
         from collections import defaultdict
         target_counts = defaultdict(lambda: 0)
 
+        # loop through filename to extract the indices
         logging.debug('computing indices')
         with gzip.open(filename,newline='',mode='rt') as f:
             for i,row in enumerate(csv.DictReader(f)):
@@ -43,6 +46,7 @@ class WebGraph():
                 target_counts[target] += 1
                 indices.append([source,target])
 
+        # remove urls with too many in-links
         if filter_ratio is not None:
             new_indices = []
             for source,target in indices:
@@ -50,6 +54,7 @@ class WebGraph():
                     new_indices.append([source,target])
             indices = new_indices
 
+        # compute the values that correspond to the indices variable
         logging.debug('computing values')
         values = []
         last_source = indices[0][0]
@@ -63,6 +68,7 @@ class WebGraph():
                 last_source = source
                 last_i = i
 
+        # generate the sparse matrix
         i = torch.LongTensor(indices).t()
         v = torch.FloatTensor(values)
         n = len(self.url_dict)
@@ -100,10 +106,11 @@ class WebGraph():
 
         else:
             v = torch.zeros(n)
-            for url,i in self.url_dict.items():
-                if url_satisfies_query(url, query):
+            for i in range(n):
+                url = self._index_to_url(i)
+                if url_satisfies_query(url,query):
                     v[i] = 1
-
+        
         v_sum = torch.sum(v)
         assert(v_sum>0)
         v /= v_sum
@@ -120,10 +127,12 @@ class WebGraph():
         with torch.no_grad():
             n = self.P.shape[0]
 
-            non_dangling_nodes = torch.sparse.sum(self.P,1).indices()
+            # Calculate a
+            nondangling_nodes = torch.sparse.sum(self.P,1).indices()
             a = torch.ones([n,1])
-            a[non_dangling_nodes] = 0
+            a[nondangling_nodes] = 0
 
+            # create variables if none given
             if v is None:
                 v = torch.Tensor([1/n]*n)
                 v = torch.unsqueeze(v,1)
@@ -134,13 +143,12 @@ class WebGraph():
                 x0 = torch.unsqueeze(x0,1)
             x0 /= torch.norm(x0)
 
+            # main loop
             xprev = x0
             x = xprev.detach().clone()
             for i in range(max_iterations):
                 xprev = x.detach().clone()
-
                 q = (alpha*x.t()@a + (1-alpha)) * v.t()
-                
                 x = torch.sparse.addmm(
                         q.t(),
                         self.P.t(),
@@ -149,79 +157,81 @@ class WebGraph():
                         alpha=alpha
                         )
                 x /= torch.norm(x)
+                # output debug information
                 residual = torch.norm(x-xprev)
                 logging.debug(f'i={i} residual={residual}')
 
+                # early stop when sufficient accuracy reached
                 if residual < epsilon:
                     break
+
+            #x = x0.squeeze()
             return x.squeeze()
 
 
-    def search(self, pi, query='', max_results=10):
+    def search(self, pi, query='', max_results=10,):
         '''
         Logs all urls that match the query.
         Results are displayed in sorted order according to the pagerank vector pi.
         '''
-        p = 30
-        similarityWeight = 0.03
         n = self.P.shape[0]
-        k = min(max_results, n)
-        similarWords = vectors.most_similar(args.search_query)
-
-        for i in range(n):
-            occurrences, queryScore, wordSimilarity = 0,0,0
-            url = self._index_to_url(i)
-
-            if url_satisfies_query_no_similar(url, query):
-                occurrences += 1
-                wordSimilarity += similarityWeight
-
-            for word in range(10):
-                w = similarWords[word][0]
-                if url_satisfies_query_no_similar(url,w):
-                    occurrences += 1
-                    wordSimilarity += similarWords[word][1]**p
-
-            queryScore += occurrences*wordSimilarity
-            pi[i] += queryScore
-
+        p = 30
         vals,indices = torch.topk(pi,n)
-        matches = 0
+        
+        
+        urls = [self._index_to_url(index.item()) for index in indices]
+        pagerank = [val.item() for val in vals]
 
+        scores = []
+
+        similar_words = []
+        for term in query.split():
+            if term[0] != '-':
+                similar_words += get_similar_words(term, add_score=True)
+
+        if query == '':
+            scores = pagerank
+
+        else:
+            for i, url in enumerate(urls):
+                score = 0
+                for word_vector in similar_words:
+                    word = word_vector[0]
+                    word_similarity = word_vector[1]
+                    new_n = url.count(word)
+                    score += new_n*(word_similarity**p)
+
+                ranking = pagerank[i] * score
+                scores.append(ranking)
+
+        url_score = list(zip(urls, scores))
+        url_score.sort(key=lambda x: x[1], reverse=True)
+        
+        matches = 0
         for i in range(n):
             if matches >= max_results:
                 break
-
-            index = indices[i].item()
-            url = self._index_to_url(index)
-            pagerank = vals[i].item()
-
+            url = url_score[i][0]
             if url_satisfies_query(url,query):
-                logging.info(f'rank={matches} pagerank={pagerank} url={url}')
+                ranking = url_score[i][1]
+                logging.info(f'rank={matches} ranking={ranking:0.4e} url={url}')
                 matches += 1
 
 
-def url_satisfies_query_no_similar(url,query):
-    satisfies = False
-    terms = query.split()
+def get_similar_words(term, n=5, add_score=False):
+    '''
+    Returns a list of the n most similar word vectors.
+    '''	
+    similar_words_v = vectors.most_similar(term)[:n]
 
-    num_terms=0
-    for term in terms:
-        if term[0] != '-':
-            num_terms+=1
-            if term in url:
-                satisfies = True
+    similar_words = []
+    if not add_score:
+        for similar_word_v in similar_words_v:
+            similar_words.append(similar_word_v[0])
+    else: 
+        return similar_words_v
 
-    if num_terms==0:
-        satisfies=True
-
-    for term in terms:
-        if term[0] == '-':
-            if term[1:] in url:
-                return False
-    return satisfies
-
-
+    return similar_words
 
 def url_satisfies_query(url, query):
     '''
@@ -249,20 +259,19 @@ def url_satisfies_query(url, query):
     '''
     satisfies = False
     terms = query.split()
-    similarWords = vectors.most_similar(args.search_query)
 
-    for i in range(5):
-        terms.append(similarWords[i][0])
-
-    occurrences = 0
+    num_terms=0
     for term in terms:
         if term[0] != '-':
-            occurrences += 1
+            num_terms+=1
+            similar_terms = get_similar_words(term)
             if term in url:
                 satisfies = True
-                
-    if occurrences == 0:
-        satisfies = True
+            for similar_term in similar_terms:
+                if similar_term in url:
+                    satisfies = True
+    if num_terms==0:
+        satisfies=True
 
     for term in terms:
         if term[0] == '-':

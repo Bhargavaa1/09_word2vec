@@ -173,6 +173,7 @@ class WebGraph():
         Results are displayed in sorted order according to the pagerank vector pi.
         '''
         p = 45
+        s_weight = 0.05
         n = self.P.shape[0]
         mostSimilarWordsTuple = vectors.most_similar(args.search_query)
 
@@ -181,12 +182,18 @@ class WebGraph():
             queryScore = 0
             wordSimilarity = 0
             url = self._index_to_url(i)
+
+            if url_satisfies_query_no_similarity(url, query):
+                occurrences += 1
+                wordSimilarity += s_weight
+
             for j in range(len(mostSimilarWordsTuple)):
                 word = mostSimilarWordsTuple[j][0]
 
-                if url_satisfies_query(url,word):
+                if url_satisfies_query_no_similarity(url,word):
                     occurrences +=1
-                    queryScore += (occurrences * (mostSimilarWordsTuple[j][1]**p))
+                    wordSimilarity += mostSimilarWordsTuple[j][1]**p
+                queryScore += occurrences*wordSimilarity
             pi[i] += queryScore
             
         vals, indices = torch.topk(pi, n)
@@ -202,6 +209,22 @@ class WebGraph():
                     f'rank={matches} pagerank={pagerank:0.4e} url={url}')
                 matches += 1
 
+def url_satisfies_query_no_similarity(url,query):
+    satisfies = False
+    terms = query.split()
+    num_terms=0
+    for term in terms:
+        if term[0] != '-':
+            num_terms+=1
+            if term in url:
+                satisfies = True
+    if num_terms==0:
+        satisfies=True
+    for term in terms:
+        if term[0] == '-':
+            if term[1:] in url:
+                return False
+    return satisfies
 
 def url_satisfies_query(url, query):
     '''
